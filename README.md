@@ -72,7 +72,7 @@ form.html
             <label>
                   churnrate:
             </label>
-            <input type="number" name="customer_churn_rate" value="{{churn_rate}}">
+            <input type="number" value="{{churnrate}}">
 
 
         </form>
@@ -80,41 +80,39 @@ form.html
     </body>
 </html>
 ```
+
 views.py
-'''
+```
 from django.shortcuts import render
 
 def churn_rate(request):
-    i = float(request.POST.get('inicust', '0'))
-    c = float(request.POST.get('custlost', '0'))
+    i=float(request.POST.get('inicust','0'))
+    c=float(request.POST.get('custlost','0'))
 
-   churn_rate  = (custlost / inicust)*100 if request.method == 'POST' else 0 
+    churnrate=(custlost/inicust)*100 if request.method=='POST' else 0 
 
-    print("inicust =", i)
-    print("custlost=", c)
-    print("customer_churn_rate =", churn_rate)
+    print("inicust =",i)
+    print("custlost=",c)
+    print("customer_churn_rate =",churnrate)
 
     return render(
         request,
         'churn/form.html',
-        {'i': i, 'c': c, 'churn_rate': churn_rate}
-    )
-   '''
-   urls.py
-   from django.contrib import admin
+        {'i':i,'c':c,'churnrate':churnrate})
+```
+urls.py
+```from django.contrib import admin
 from django.urls import path
 from churn import views
 
-urlpatterns = [
-    path('', views.churn_rate, name='churn_rate'),
-]
-''' 
+urlpatterns=[path('',views.churn_rate,name='churn_rate'),]
+```
 
 ## OUTPUT - SERVER SIDE:
 
-
+![server-sidevoutput](<Screenshot 2026-11-14 181151.png>)
 ## OUTPUT - WEBPAGE:
 
-
+![web-page output](<Screenshot 2026-11-14 174206.png>)
 ## RESULT:
 The the web page to calculate Churn Rate using server-side scripts is created successfully.
