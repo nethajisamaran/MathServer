@@ -42,7 +42,73 @@ Render the result to the HTML template.
 Publish the website in Localhost.
 
 ## PROGRAM:
+form.html
+```
+<html>
+    <head>
+    <title>
+        churnrate
+    </title>
+    </head>
+    <body>
+        <h1>NETHAJISAMARAN(26015547)</h1>
+        <h2> 
+            Churn Rate
+        </h2>
+        <form method="POST">
+            {%csrf_token%}
+            <label>
+                initcust 
+            </label>
+            <input type="number" name="inicust" value="{{i}}">
+            <br>
+            <label>
+                customerlost:
+            </label>
+            <input type="number" name="custlost" value="{{c}}">
+            <br>
+            <input type="submit" value="calculate">
+            <br>
+            <label>
+                  churnrate:
+            </label>
+            <input type="number" name="customer_churn_rate" value="{{churn_rate}}">
 
+
+        </form>
+        
+    </body>
+</html>
+```
+views.py
+'''
+from django.shortcuts import render
+
+def churn_rate(request):
+    i = float(request.POST.get('inicust', '0'))
+    c = float(request.POST.get('custlost', '0'))
+
+   churn_rate  = (custlost / inicust)*100 if request.method == 'POST' else 0 
+
+    print("inicust =", i)
+    print("custlost=", c)
+    print("customer_churn_rate =", churn_rate)
+
+    return render(
+        request,
+        'churn/form.html',
+        {'i': i, 'c': c, 'churn_rate': churn_rate}
+    )
+   '''
+   urls.py
+   from django.contrib import admin
+from django.urls import path
+from churn import views
+
+urlpatterns = [
+    path('', views.churn_rate, name='churn_rate'),
+]
+''' 
 
 ## OUTPUT - SERVER SIDE:
 

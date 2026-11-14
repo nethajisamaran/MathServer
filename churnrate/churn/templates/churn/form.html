@@ -1,0 +1,35 @@
+<html>
+    <head>
+    <title>
+        churnrate
+    </title>
+    </head>
+    <body>
+        <h1>NETHAJISAMARAN(26015547)</h1>
+        <h2> 
+            Churn Rate
+        </h2>
+        <form method="POST">
+            {%csrf_token%}
+            <label>
+                initcust 
+            </label>
+            <input type="number" name="inicust" value="{{i}}">
+            <br>
+            <label>
+                customerlost:
+            </label>
+            <input type="number" name="custlost" value="{{c}}">
+            <br>
+            <input type="submit" value="calculate">
+            <br>
+            <label>
+                  churnrate:
+            </label>
+            <input type="number" name="customer_churn_rate" value="{{churn_rate}}">
+
+
+        </form>
+        
+    </body>
+</html>
