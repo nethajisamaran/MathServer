@@ -101,7 +101,8 @@ def churn_rate(request):
         {'i':i,'c':c,'churnrate':churnrate})
 ```
 urls.py
-```from django.contrib import admin
+```
+from django.contrib import admin
 from django.urls import path
 from churn import views
 
@@ -113,6 +114,6 @@ urlpatterns=[path('',views.churn_rate,name='churn_rate'),]
 ![server-sidevoutput](<Screenshot 2026-11-14 181151.png>)
 ## OUTPUT - WEBPAGE:
 
-![web-page output](<Screenshot 2026-11-14 174206.png>)
+![browser_side](<Screenshot 2026-11-20 171041.png>)
 ## RESULT:
 The the web page to calculate Churn Rate using server-side scripts is created successfully.
